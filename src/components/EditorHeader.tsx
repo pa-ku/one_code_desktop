@@ -1,16 +1,13 @@
 import {
   Play,
   RefreshCcw,
-  Cloud,
   ArrowLeftRight,
   ListOrdered,
   Boxes,
-  Share2,
 } from 'lucide-react'
-import icon from '/onecode.webp'
+
 import { useConfig } from '../context/ConfigContext'
 import Checkbox from './Checkbox'
-import { useClipboard } from '../hooks/useClipboard'
 
 interface EditorHeaderProps {
   onExecute: () => void
@@ -19,8 +16,6 @@ interface EditorHeaderProps {
 export function EditorHeader({ onExecute }: EditorHeaderProps) {
   const {
     autoRun,
-    saveCode,
-    setSaveCode,
     setAutoRun,
     setInvertLayout,
     setLineNum,
@@ -29,8 +24,6 @@ export function EditorHeader({ onExecute }: EditorHeaderProps) {
     formatOnSave,
     setFormatOnSave,
   } = useConfig()
-
-  const { isCopied, copyToClipboard } = useClipboard()
 
   return (
     <div
@@ -47,26 +40,6 @@ export function EditorHeader({ onExecute }: EditorHeaderProps) {
            group-hover/play:opacity-100 opacity-0 -bottom-12 pointer-events-none z-10  duration-300 absolute left-0 border-background-100 border w-max bg-black rounded-lg p-2 `}
           >
             Execute Code
-          </p>
-        </button>
-
-        <button
-          onClick={copyToClipboard}
-          className='flex relative group/share items-center text-md gap-2 p-1  rounded text-accent'
-        >
-          <Share2 size={20} />
-          <p
-            className={`
-           group-hover/share:opacity-100 opacity-0 pointer-events-none z-10 -bottom-12   duration-300 absolute left-0 border-background-100 border w-max bg-black rounded-lg p-2 `}
-          >
-            Share Url
-          </p>
-          <p
-            className={`${
-              isCopied ? 'opacity-100' : ' opacity-0 '
-            } pointer-events-none z-10  duration-300 absolute -bottom-10  left-0 border-background-100 border w-max bg-black rounded-lg p-2 `}
-          >
-            Url copied
           </p>
         </button>
 
@@ -97,13 +70,6 @@ export function EditorHeader({ onExecute }: EditorHeaderProps) {
           <Boxes size={20}></Boxes>
         </Checkbox>
 
-        <Checkbox
-          checked={saveCode}
-          onChange={(e) => setSaveCode(e.target.checked)}
-          onHover='Save in url'
-        >
-          <Cloud size={20}></Cloud>
-        </Checkbox>
         <Checkbox
           checked={autoRun}
           onChange={(e) => setAutoRun(e.target.checked)}

@@ -20,7 +20,7 @@ type ConfigContextType = {
   formatOnSave: boolean
   setFormatOnSave: (value: boolean) => void
   fontSize: number
-  setFontSize: (value: number) => number
+  setFontSize: (value: number) => void
 }
 
 export function useConfig(): ConfigContextType {

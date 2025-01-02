@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UI>
+      <!-- Configuración para la página de bienvenida -->
+      <Text Id="WelcomeDlgTitle">¡Bienvenido a MiAplicación!</Text>
+      <Text Id="WelcomeDlgDescription">
+        Este asistente le ayudará a instalar MiAplicación en su equipo.
+      </Text>
+
+      <!-- Configuración para la página de progreso -->
+      <Text Id="ProgressDlgTitle">Instalando MiAplicación</Text>
+      <Text Id="ProgressDlgDescription">
+        Espere mientras MiAplicación se instala en su equipo.
+      </Text>
+
+      <!-- Configuración para la página final -->
+      <Text Id="FinishDlgTitle">Instalación completada</Text>
+      <Text Id="FinishDlgDescription">
+        MiAplicación se instaló correctamente. Haga clic en Finalizar para cerrar.
+      </Text>
+    </UI>
+  </Fragment>
+</Wix>

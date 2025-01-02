@@ -8,13 +8,12 @@ import { useConsoleHistory } from './hooks/useConsoleHistory'
 import { useConfig } from './context/ConfigContext'
 import { usePanelResize } from './hooks/usePanelResize'
 import { createExecutionContext, executeCode } from './utils/codeExecutor'
-
-import useManageCode from './hooks/useManageCode'
 import { EditorHeader } from './components/EditorHeader'
 
-export default function App() {
-  const { replaceUrl, saveCodeInLocal, setCode, code } = useManageCode()
+import useLocalStorage from 'use-local-storage'
 
+export default function App() {
+  const [code, setCode] = useLocalStorage('code', '')
   const { history, addToHistory, clearHistory } = useConsoleHistory()
   const { leftPanelWidth, handleMouseDown } = usePanelResize()
   const { autoRun, invertLayout, saveCode } = useConfig()
@@ -37,18 +36,11 @@ export default function App() {
     if (autoRun) {
       handleExecution(debouncedCode)
     }
-    if (saveCode) {
-      replaceUrl(debouncedCode)
-      return
-    }
-    replaceUrl('/')
   }, [debouncedCode, saveCode])
 
   function handleEditorChange(value: string | undefined) {
-    saveCodeInLocal(value)
     setCode(value || '')
   }
-
   return (
     <div className='h-screen w-screen relative   bg-gray-900 text-white overflow-hidden'>
       <div
